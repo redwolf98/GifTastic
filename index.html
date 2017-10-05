@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GifTastic!</title>
+
+     <!-- Bootstrap File -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+   <!-- CSS -->
+    <link rel="stylesheet" href="assets/css/style.css"> 
+    <!-- JQuery -->
+    <script src="https://code.jquery.com/jquery.js"></script>
+   
+</head>
+<body>
+
+    <div class="container-fluid">
+
+        <div class="row buttonRow">
+                <div class="col-lg-12" id="buttonColumn">
+                        buttons
+                </div>   
+        </div>
+       
+        <div class="row workArea"> 
+       
+            <div class="col-lg-9 imagesArea">
+                    images
+            </div>   
+            <div class="col-lg-3 searchArea">
+                    <b>Add an animal</b>
+                    <form>
+                       <input id="inputText" type="text"  style="width:100%" > 
+                       <br>
+                       <input id="inputButton" class="button" value="Submit" type="submit">
+                       <div style="color:red; display:none;" id="errorMessage"></div>
+                    </form>
+            </div>   
+
+       </div>
+
+    </div>
+
+    <!-- My Javascript -->
+    <script src="assets/javascript/app.js"></script>
+</body>
+
+
+</html>

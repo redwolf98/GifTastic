@@ -1,0 +1,46 @@
+html, body, .container-fluid, .buttonsAndImagesArea{
+    height:100%;
+    
+}
+body{
+    background: -webkit-linear-gradient(top, #f2f5f6 0%,#e3eaed 37%,#c8d7dc 100%);
+}
+
+.buttonRow, .buttonColumn{
+    min-height:10%;
+}
+
+.button{
+    margin:5px;
+    background: #008B8B;
+    color:white;
+    padding: 0px 3px 0px 3px;
+}
+
+#buttonColumn{
+    float:left;
+    height:auto;
+    min-height: 10%;
+    border-bottom-style: ridge;
+}
+
+.workArea{
+    height:90%;
+}
+
+.imagesArea, .searchArea{
+    height:100%;
+}
+
+.imagesArea{
+    overflow-y: auto;
+    padding:5px;
+}
+
+.image{
+    margin:5px;
+}
+
+.image:hover{
+    transform: scale(1.2);
+}
