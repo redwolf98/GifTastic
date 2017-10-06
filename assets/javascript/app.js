@@ -1,4 +1,12 @@
 var Animals = ["lion",'tiger','tear','monkey','baboon','falcon','eagle'];
+var apiKey = "&api_key=v1L089wZ77BhklsEz4QtcWxolRecN4B3";
+var queryURL = "https://api.giphy.com/v1/stickers/search?";
+const queryLimit = 10;
+const DEBUG = true;
+
+function log(input){
+    if(DEBUG) console.log(input);
+}
 
 function addAnimalButton(input){
     if(Array.isArray(input)){
@@ -55,3 +63,24 @@ function showErrorMessage(message){
     setTimeout(function(){$("#errorMessage").hide();},3000);
 
 }
+
+$(document).ready(function(){
+    $(".animalButton").on("click", function(){
+
+        $.ajax({
+            url:queryURL + "q=" + $(this).attr("animal").replace(" ","+") + "&limit=" + queryLimit.toString() + apiKey,
+            method:"GET"
+        }).done(function(response){
+            log(this.url);
+            log(response);
+            var results = response.data;
+            $(".imagesArea").empty();
+            for(i=0;i<results.length;i++){
+                
+            }
+
+        });
+
+
+    });
+});
