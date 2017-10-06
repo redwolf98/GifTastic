@@ -34,11 +34,12 @@ body{
 
 .imagesArea{
     overflow-y: auto;
-    padding:5px;
+    padding:10px;
 }
 
 .image{
     margin:5px;
+    float:left;
 }
 
 .image:hover{

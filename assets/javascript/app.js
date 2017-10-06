@@ -13,10 +13,85 @@ function addAnimalButton(input){
         for(i=0;i<input.length;i++){
             console.log(input[i]);
             var button = $("<button>").addClass("button animalButton").attr("animal",input[i]).append(capitalizeWord(input[i]));
+
+            button.bind("click", function(){
+                
+                        $.ajax({
+                            url:queryURL + "q=" + $(this).attr("animal").replace(" ","+") + "&limit=" + queryLimit.toString() + apiKey,
+                            method:"GET"
+                        }).done(function(response){
+                            log(this.url);
+                            log(response);
+                            var results = response.data;
+                            $(".imagesArea").empty();
+                            for(i=0;i<results.length;i++){
+                                var gifDiv = $("<div class='image'>");
+                                var p = $("<p>").html("Rating: " + results[i].rating).attr("margin","10px");                
+                                var image = $("<img>").attr("src",results[i].images.fixed_height_still.url).attr("image-state","still");
+                                image.attr("still-source", results[i].images.fixed_height_still.url);
+                                image.attr("moving-source", results[i].images.fixed_height.url);
+                
+                
+                                gifDiv.append(image).prepend(p);
+                
+                                image.bind("click",function(){
+                                  if($(this).attr("image-state") == "still"){
+                                    $(this).attr("src", $(this).attr("moving-source")).attr("image-state","moving");
+                                  }else{
+                                    $(this).attr("src", $(this).attr("still-source")).attr("image-state","still");
+                                  }
+                                })
+                
+                
+                                $(".imagesArea").append(gifDiv);
+                            }
+                
+                        });
+                
+                
+                    });
+
             $("#buttonColumn").append(button);
         }
     }else{//single string input
         var button = $("<button>").addClass("button animalButton").attr("animal",input).append(capitalizeWord(input));
+        button.bind("click", function(){
+            
+                    $.ajax({
+                        url:queryURL + "q=" + $(this).attr("animal").replace(" ","+") + "&limit=" + queryLimit.toString() + apiKey,
+                        method:"GET"
+                    }).done(function(response){
+                        log(this.url);
+                        log(response);
+                        var results = response.data;
+                        $(".imagesArea").empty();
+                        for(i=0;i<results.length;i++){
+                            var gifDiv = $("<div class='image'>");
+                            var p = $("<p>").html("Rating: " + results[i].rating).attr("margin","10px");                
+                            var image = $("<img>").attr("src",results[i].images.fixed_height_still.url).attr("image-state","still");
+                            image.attr("still-source", results[i].images.fixed_height_still.url);
+                            image.attr("moving-source", results[i].images.fixed_height.url);
+            
+            
+                            gifDiv.append(image).prepend(p);
+            
+                            image.bind("click",function(){
+                              if($(this).attr("image-state") == "still"){
+                                $(this).attr("src", $(this).attr("moving-source")).attr("image-state","moving");
+                              }else{
+                                $(this).attr("src", $(this).attr("still-source")).attr("image-state","still");
+                              }
+                            })
+            
+            
+                            $(".imagesArea").append(gifDiv);
+                        }
+            
+                    });
+            
+            
+                });
+
         $("#buttonColumn").prepend(button);
     }
 }
@@ -29,6 +104,7 @@ $("#inputButton").on("click",function(event){
     event.preventDefault();
 
     var newInput = $("#inputText").val().trim().toLowerCase();
+    this.form.reset();
     console.log(newInput + "" + newInput.length);
     if(newInput.length === 0){
         showErrorMessage("Please enter an animal");
@@ -65,22 +141,5 @@ function showErrorMessage(message){
 }
 
 $(document).ready(function(){
-    $(".animalButton").on("click", function(){
-
-        $.ajax({
-            url:queryURL + "q=" + $(this).attr("animal").replace(" ","+") + "&limit=" + queryLimit.toString() + apiKey,
-            method:"GET"
-        }).done(function(response){
-            log(this.url);
-            log(response);
-            var results = response.data;
-            $(".imagesArea").empty();
-            for(i=0;i<results.length;i++){
-                
-            }
-
-        });
-
-
-    });
+    
 });
